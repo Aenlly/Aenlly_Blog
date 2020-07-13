@@ -1,0 +1,12 @@
+.navbar-right .search {
+    display: block;
+}
+.navbar-header .search, .navbar-header .search-btn, .navbar-right .search, .navbar-right .search-btn {
+    display: none;
+}
+.search .search-form .input-group .search-icon {
+    display: inline;
+}
+.navbar .search-icon {
+    display: inline;
+}
