@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Aenlly
@@ -79,17 +80,12 @@
                         </li>
                         <li>
                             <a href="">
-                                <span style="color: #e0e0e0;">发布文件</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
                                 <span style="color: #e0e0e0;">查看提问</span>
                             </a>
                         </li>
                         <li>
                             <a href="">
-                                <span style="color: #e0e0e0;">查看文章|作品|文件</span>
+                                <span style="color: #e0e0e0;">查看文章|作品</span>
                             </a>
                         </li>
                         <li>
@@ -132,9 +128,6 @@
                     <div class="panel-body dl curter">
                         <a href="" target="_self">发布作品</a>
                     </div>
-                    <div class="panel-body dl curter">
-                        <a href="" target="_self"><span>发布文件</span></a>
-                    </div>
                 </dd>
                 <!--   第一个panel-head下隐藏的部分结束   --->
                 <dt class="panel-heading curter" data-toggle="collapse" data-target="#Administration">
@@ -149,7 +142,7 @@
                         <a href="" target="_self">作品管理</a>
                     </div>
                     <div class="panel-body dl curter">
-                        <a href="" target="_self">文件管理</a>
+                        <a href="" target="_self">主题管理</a>
                     </div>
                     <div class="panel-body dl curter">
                         <a href="" target="_self">问题管理</a>
@@ -199,12 +192,39 @@
                         </tr>
                         <tr>
                             <td>
+                                </br>
+                                主题类别
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select class="form-control" name="">
+                                    <option value="">请选择主题</option>
+                                    <s:iterator value="catelist">
+                                        <option value="cate_cetagory"></option>
+                                    </s:iterator>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 </br>正文
                             </td>
                         </tr>
                         <tr>
                             <td>
-
+                                <!-- 加载编辑器的容器 name属性传参的命名-->
+                                <script id="content" name="Post_Entity.postContent" type="text/plain">
+                                <!--  这里写你的初始化内容  -->
+                                </script>
+                                <!-- 配置文件 -->
+                                <script type="text/javascript" src="<%=request.getContextPath() %>/editor/ueditor.config.js"></script>
+                                <!-- 编辑器源码文件 -->
+                                <script type="text/javascript" src="<%=request.getContextPath() %>/editor/ueditor.all.min.js"></script>
+                                <!-- 实例化编辑器 -->
+                                <script type="text/javascript">
+                                    var ue = UE.getEditor('content');
+                                </script>
                             </td>
                         </tr>
                     </table>

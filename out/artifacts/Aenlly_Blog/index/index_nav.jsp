@@ -46,11 +46,6 @@
                         </li>
                         <li>
                             <a href="">
-                                <span style="color: #e0e0e0;">文件</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
                                 <span style="color: #e0e0e0;">向作者提问</span>
                             </a>
                         </li>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Aenlly_Blog">
+    <output-path>$PROJECT_DIR$/out/artifacts/Aenlly_Blog</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Aenlly_Blog/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Aenlly_Blog" />
+        </element>
+        <element id="directory" name="lib" />
+      </element>
+    </root>
+  </artifact>
+</component>

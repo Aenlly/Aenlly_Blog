@@ -36,7 +36,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.16" level="application_server_libraries" />
-    <orderEntry type="library" name="SSH" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit5.4">
         <CLASSES>
@@ -63,5 +62,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="SSH" level="project" />
+    <orderEntry type="library" name="ueditor" level="project" />
   </component>
 </module>
