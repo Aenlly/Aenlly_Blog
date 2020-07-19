@@ -24,9 +24,12 @@
         <global-exception-mappings>
             <exception-mapping exception="java.lang.Exception" result="error"/>
         </global-exception-mappings>
+        <action name="uploadimage">
 
+        </action>
         <action name="admin_*" class="adminAction" method="{1}">
             <result name="list">/admin_index.jsp</result>
+            <result name="page">/admin/admin_index.jsp</result>
             <!--如果struts为2.5版本以上，需要添加执行的方法,如
             <allowed-methods>list</allowed-methods>
             -->

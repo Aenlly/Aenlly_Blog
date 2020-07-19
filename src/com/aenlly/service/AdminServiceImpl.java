@@ -14,8 +14,8 @@ public class AdminServiceImpl implements AdminService{
     private AdminDao adminDao;
 
     @Override
-    public Integer save(Admin_Entity admin_Entity) {
-        return adminDao.save(admin_Entity);
+    public Integer save(Admin_Entity adminEntity) {
+        return adminDao.save(adminEntity);
     }
 
     @Override
@@ -24,13 +24,13 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public boolean update(Admin_Entity admin_Entity) {
-        return adminDao.update(admin_Entity);
+    public boolean update(Admin_Entity adminEntity) {
+        return adminDao.update(adminEntity);
     }
 
     @Override
-    public boolean delete(Admin_Entity admin_Entity) {
-        return adminDao.delete(admin_Entity);
+    public boolean delete(Admin_Entity adminEntity) {
+        return adminDao.delete(adminEntity);
     }
 
     @Override

@@ -1,19 +1,18 @@
 package com.aenlly.entity;
 
-import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "admin", schema = "aenlly_blog", catalog = "")
+@javax.persistence.Entity
+@javax.persistence.Table(name = "admin", schema = "aenlly_blog", catalog = "")
 public class Admin_Entity {
     private int adminId;
     private String adminNickname;
     private String adminAccount;
     private String adminPwd;
-    private String adminPower;
+    private Integer adminPowerId;
 
-    @Id
-    @Column(name = "admin_id", nullable = false)
+    @javax.persistence.Id
+    @javax.persistence.Column(name = "admin_id", nullable = false)
     public int getAdminId() {
         return adminId;
     }
@@ -22,8 +21,8 @@ public class Admin_Entity {
         this.adminId = adminId;
     }
 
-    @Basic
-    @Column(name = "admin_nickname", nullable = false, length = 10)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "admin_nickname", nullable = false, length = 10)
     public String getAdminNickname() {
         return adminNickname;
     }
@@ -32,8 +31,8 @@ public class Admin_Entity {
         this.adminNickname = adminNickname;
     }
 
-    @Basic
-    @Column(name = "admin_account", nullable = false, length = 255)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "admin_account", nullable = false, length = 255)
     public String getAdminAccount() {
         return adminAccount;
     }
@@ -42,8 +41,8 @@ public class Admin_Entity {
         this.adminAccount = adminAccount;
     }
 
-    @Basic
-    @Column(name = "admin_pwd", nullable = false, length = 16)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "admin_pwd", nullable = false, length = 16)
     public String getAdminPwd() {
         return adminPwd;
     }
@@ -52,14 +51,14 @@ public class Admin_Entity {
         this.adminPwd = adminPwd;
     }
 
-    @Basic
-    @Column(name = "admin_power", nullable = false, length = 255)
-    public String getAdminPower() {
-        return adminPower;
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "admin_power_id", nullable = true)
+    public Integer getAdminPowerId() {
+        return adminPowerId;
     }
 
-    public void setAdminPower(String adminPower) {
-        this.adminPower = adminPower;
+    public void setAdminPowerId(Integer adminPowerId) {
+        this.adminPowerId = adminPowerId;
     }
 
     @Override
@@ -71,11 +70,11 @@ public class Admin_Entity {
                 Objects.equals(adminNickname, that.adminNickname) &&
                 Objects.equals(adminAccount, that.adminAccount) &&
                 Objects.equals(adminPwd, that.adminPwd) &&
-                Objects.equals(adminPower, that.adminPower);
+                Objects.equals(adminPowerId, that.adminPowerId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(adminId, adminNickname, adminAccount, adminPwd, adminPower);
+        return Objects.hash(adminId, adminNickname, adminAccount, adminPwd, adminPowerId);
     }
 }

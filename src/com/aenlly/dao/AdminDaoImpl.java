@@ -14,8 +14,8 @@ public class AdminDaoImpl implements AdminDao{
     private HibernateTemplate hibernateTemplate;
 
     @Override
-    public Integer save(Admin_Entity admin_Entity) {
-        return (Integer)hibernateTemplate.save(admin_Entity);
+    public Integer save(Admin_Entity adminEntity) {
+        return (Integer)hibernateTemplate.save(adminEntity);
     }
 
     @Override
@@ -24,9 +24,9 @@ public class AdminDaoImpl implements AdminDao{
     }
 
     @Override
-    public boolean update(Admin_Entity admin_Entity) {
+    public boolean update(Admin_Entity adminEntity) {
         try{
-            hibernateTemplate.update(admin_Entity);
+            hibernateTemplate.update(adminEntity);
             return true;
         }catch (Exception e){
             return false;
@@ -34,9 +34,9 @@ public class AdminDaoImpl implements AdminDao{
     }
 
     @Override
-    public boolean delete(Admin_Entity admin_Entity) {
+    public boolean delete(Admin_Entity adminEntity) {
         try {
-            hibernateTemplate.delete(admin_Entity);
+            hibernateTemplate.delete(adminEntity);
             return true;
         }catch (Exception e){
             return false;

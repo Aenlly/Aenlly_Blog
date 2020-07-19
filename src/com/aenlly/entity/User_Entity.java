@@ -1,11 +1,10 @@
 package com.aenlly.entity;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@Table(name = "user", schema = "aenlly_blog", catalog = "")
+@javax.persistence.Entity
+@javax.persistence.Table(name = "user", schema = "aenlly_blog", catalog = "")
 public class User_Entity {
     private int userId;
     private String userNickname;
@@ -15,8 +14,8 @@ public class User_Entity {
     private String userEmail;
     private Timestamp userTime;
 
-    @Id
-    @Column(name = "user_id", nullable = false)
+    @javax.persistence.Id
+    @javax.persistence.Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -25,8 +24,8 @@ public class User_Entity {
         this.userId = userId;
     }
 
-    @Basic
-    @Column(name = "user_nickname", nullable = true, length = 10)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "user_nickname", nullable = true, length = 10)
     public String getUserNickname() {
         return userNickname;
     }
@@ -35,8 +34,8 @@ public class User_Entity {
         this.userNickname = userNickname;
     }
 
-    @Basic
-    @Column(name = "user_headimg", nullable = true, length = 255)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "user_headimg", nullable = true, length = 255)
     public String getUserHeadimg() {
         return userHeadimg;
     }
@@ -45,8 +44,8 @@ public class User_Entity {
         this.userHeadimg = userHeadimg;
     }
 
-    @Basic
-    @Column(name = "user_account", nullable = false, length = 255)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "user_account", nullable = false, length = 255)
     public String getUserAccount() {
         return userAccount;
     }
@@ -55,8 +54,8 @@ public class User_Entity {
         this.userAccount = userAccount;
     }
 
-    @Basic
-    @Column(name = "user_pwd", nullable = false, length = 16)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "user_pwd", nullable = false, length = 16)
     public String getUserPwd() {
         return userPwd;
     }
@@ -65,8 +64,8 @@ public class User_Entity {
         this.userPwd = userPwd;
     }
 
-    @Basic
-    @Column(name = "user_email", nullable = false, length = 20)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "user_email", nullable = false, length = 20)
     public String getUserEmail() {
         return userEmail;
     }
@@ -75,8 +74,8 @@ public class User_Entity {
         this.userEmail = userEmail;
     }
 
-    @Basic
-    @Column(name = "user_time", nullable = false)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "user_time", nullable = false)
     public Timestamp getUserTime() {
         return userTime;
     }

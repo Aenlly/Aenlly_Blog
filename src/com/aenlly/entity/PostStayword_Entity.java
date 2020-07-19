@@ -1,11 +1,10 @@
 package com.aenlly.entity;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@Table(name = "post_stayword", schema = "aenlly_blog", catalog = "")
+@javax.persistence.Entity
+@javax.persistence.Table(name = "post_stayword", schema = "aenlly_blog", catalog = "")
 public class PostStayword_Entity {
     private int postStayId;
     private int postId;
@@ -13,8 +12,8 @@ public class PostStayword_Entity {
     private String postStayContent;
     private Timestamp postStayTime;
 
-    @Id
-    @Column(name = "post_stay_id", nullable = false)
+    @javax.persistence.Id
+    @javax.persistence.Column(name = "post_stay_id", nullable = false)
     public int getPostStayId() {
         return postStayId;
     }
@@ -23,8 +22,8 @@ public class PostStayword_Entity {
         this.postStayId = postStayId;
     }
 
-    @Basic
-    @Column(name = "post_id", nullable = false)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "post_id", nullable = false)
     public int getPostId() {
         return postId;
     }
@@ -33,8 +32,8 @@ public class PostStayword_Entity {
         this.postId = postId;
     }
 
-    @Basic
-    @Column(name = "post_stay_nickname", nullable = false, length = 255)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "post_stay_nickname", nullable = false, length = 255)
     public String getPostStayNickname() {
         return postStayNickname;
     }
@@ -43,8 +42,8 @@ public class PostStayword_Entity {
         this.postStayNickname = postStayNickname;
     }
 
-    @Basic
-    @Column(name = "post_stay_content", nullable = false, length = 255)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "post_stay_content", nullable = false, length = 255)
     public String getPostStayContent() {
         return postStayContent;
     }
@@ -53,8 +52,8 @@ public class PostStayword_Entity {
         this.postStayContent = postStayContent;
     }
 
-    @Basic
-    @Column(name = "post_stay_time", nullable = false)
+    @javax.persistence.Basic
+    @javax.persistence.Column(name = "post_stay_time", nullable = false)
     public Timestamp getPostStayTime() {
         return postStayTime;
     }

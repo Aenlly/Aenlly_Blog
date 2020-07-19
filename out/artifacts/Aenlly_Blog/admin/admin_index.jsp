@@ -10,7 +10,7 @@
 <html>
 <head>
     <s:include value="../index/head.jsp">
-        <s:param name="title" value="管理员主页" />
+        <s:param name="title" value="'管理员主页'" />
     </s:include>
 </head>
 <body>
