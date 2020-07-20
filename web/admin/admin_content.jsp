@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <s:include value="../index/head.jsp"></s:include>
+
 </head>
 <body>
 <div class="panel-body">
@@ -18,22 +18,31 @@
         <tr>
             <td style="text-align: left;">
                 <%-- 搜索内容搜索条 --%>
-                <form class="navbar-form" action="#" role="search">
+                <form class="navbar-form" action="admin_article_title" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="搜索内容">
+                        <input type="text" class="form-control" name="post_Entity.postTitle" placeholder="搜索内容">
+                        <s:if test="%{#count!=null}">
+                            查询结果:共${count}条记录
+                        </s:if>
+                        <s:else>
+                        </s:else>
                     </div>
+
                 </form>
                 <!-- navbar-form结束   -->
             </td>
         </tr>
+
         <tr>
             <td>
                 </br>
                 <strong>内容标题</strong>
+                </br></br>
             </td>
             <td>
                 </br>
                 <strong>执行操作</strong>
+                </br></br>
             </td>
         </tr>
         <s:iterator value="pagelist">
@@ -48,24 +57,28 @@
                 &nbsp;
                 <a href="" class="btn btn-primary">编辑</a>
                 &nbsp;
-                <a href="#" class="btn btn-danger">删除</a>
+                <a href="admin_delete?Post_Entity.postId=${postId}" class="btn btn-danger">删除</a>
             </td>
         </tr>
         </s:iterator>
-        <tr>
-            <td colspan="2">
-                <ul class="pagination">
-                    <li><a href="admin_Page?pageNow=${pageNow-1}">上一页</a></li>
-                    <li><span>共${pageNow}/${paging.pages}页</span></li>
-                    <s:if test="%{isHasNext}">
-                        <li><a href="admin_Page?pageNow=${pageNow+1}">下一页</a></li>
-                    </s:if>
-                    <s:else>
-                        <li><a href="admin_Page?pageNow=${pageNow}">下一页</a></li>
-                    </s:else>
-                </ul>
-            </td>
-        </tr>
+        <s:if test="%{#count!=null}">
+        </s:if>
+        <s:else>
+            <tr>
+                <td colspan="2">
+                    <ul class="pagination">
+                        <li><a href="admin_Page?pageNow=${pageNow-1}">上一页</a></li>
+                        <li><span>共${pageNow}/${paging.pages}页</span></li>
+                        <s:if test="%{isHasNext}">
+                            <li><a href="admin_page?pageNow=${pageNow+1}">下一页</a></li>
+                        </s:if>
+                        <s:else>
+                            <li><a href="admin_page?pageNow=${pageNow}">下一页</a></li>
+                        </s:else>
+                    </ul>
+                </td>
+            </tr>
+        </s:else>
     </table>
 </div>
 </body>

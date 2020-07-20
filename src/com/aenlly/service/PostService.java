@@ -19,4 +19,8 @@ public interface PostService {
     int getCount(int themeId);
     //按标题查询文章或作品
     List<Post_Entity> getAll(String postTitle);
+    //按标题模糊查询文章或作品总记录数
+    Integer getLikeCount(String postTitle,int themeId);
+    //按主题查找的标题
+    List<Post_Entity> getLikeTitle(String postTitle,int themeId);
 }

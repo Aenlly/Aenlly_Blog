@@ -28,8 +28,10 @@
 
         </action>
         <action name="admin_*" class="adminAction" method="{1}">
+            <result name="release">/admin/admin_index.jsp</result>
             <result name="list">/admin_index.jsp</result>
-            <result name="page">/admin/admin_index.jsp</result>
+            <result name="article">/admin/admin_index.jsp</result>
+            <result name="article_title">/admin/admin_index.jsp</result>
             <!--如果struts为2.5版本以上，需要添加执行的方法,如
             <allowed-methods>list</allowed-methods>
             -->

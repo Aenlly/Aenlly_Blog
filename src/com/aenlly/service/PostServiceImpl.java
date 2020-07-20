@@ -47,4 +47,14 @@ public class PostServiceImpl implements PostService{
     public List<Post_Entity> getAll(String postTitle) {
         return postDao.getAll(postTitle);
     }
+
+    @Override
+    public Integer getLikeCount(String postTitle, int themeId) {
+        return postDao.getLikeCount(postTitle,themeId);
+    }
+
+    @Override
+    public List<Post_Entity> getLikeTitle( String postTitle, int themeId) {
+        return postDao.getLikeTitle(postTitle,themeId);
+    }
 }

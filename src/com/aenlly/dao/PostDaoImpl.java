@@ -76,4 +76,28 @@ public class PostDaoImpl implements PostDao {
         List<Post_Entity> list=(List<Post_Entity>)hibernateTemplate.find(sql,values);
         return list;
     }
+
+    @Override
+    public Integer getLikeCount(String postTitle,int themeId) {
+        DetachedCriteria detachedCriteria=DetachedCriteria.forClass(Post_Entity.class);
+        detachedCriteria.add(Restrictions.like("postTitle",postTitle));
+        detachedCriteria.add(Restrictions.eq("themeId",themeId));
+        //利用hibernateTemplate的findByCriteria分页查询方法其中参数分别为detachedCriteria
+        List<Post_Entity> lists = (List<Post_Entity>) hibernateTemplate.findByCriteria(detachedCriteria);
+        int count=0;
+        for (Post_Entity list:lists) {
+            count++;
+        }
+        return count;
+    }
+
+    @Override
+    public List<Post_Entity> getLikeTitle(String postTitle,int themeId) {
+        DetachedCriteria detachedCriteria=DetachedCriteria.forClass(Post_Entity.class);
+        detachedCriteria.add(Restrictions.like("postTitle",postTitle));
+        detachedCriteria.add(Restrictions.eq("themeId",themeId));
+        //利用hibernateTemplate的findByCriteria分页查询方法其中参数分别为detachedCriteria
+        List<Post_Entity> list = (List<Post_Entity>) hibernateTemplate.findByCriteria(detachedCriteria);
+        return list;
+    }
 }
