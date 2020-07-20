@@ -78,7 +78,7 @@ public class AdminAction extends ActionSupport {
         setIstrue(1);//设置导航栏选择判断值
         ActionContext.getContext().put("isin",isin);
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
-        ActionContext.getContext().put("pagelist",list);//存储显示的内容到pagelist中
+        ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
         ActionContext.getContext().put("paging",paging);//存储页码数据到pagin中
 
         return "article";
@@ -92,9 +92,42 @@ public class AdminAction extends ActionSupport {
         setIstrue(1);//设置导航栏选择判断值
         ActionContext.getContext().put("isin",isin);
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
-        ActionContext.getContext().put("pagelist",list);//存储显示的内容到pagelist中
+        ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
         ActionContext.getContext().put("count",count);//存储查询的总记录数到count中
         return "article_title";
+    }
+
+    public String works(){
+        istrue=getIstrue();//获得判断显示值
+        pageNow=getPageNow();//获得页码
+        pageSize=getPageSize();//获得页显示数
+        int counts=postService.getCount(2);//获得总记录数
+        if(pageNow<1||pageNow>(pageSize+count-1)/pageSize)//判断点击的页码是否小于1
+            pageNow=1;
+        Paging paging=new Paging(pageNow,pageSize,counts);//获得页的总页数等
+        List<Post_Entity> list=postService.getTitle(pageNow,pageSize,2);//获得文章的内容
+
+        setIsin("Administration");//设置管理导航栏的判断值
+        setIstrue(2);//设置导航栏选择判断值
+        ActionContext.getContext().put("isin",isin);
+        ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
+        ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
+        ActionContext.getContext().put("paging",paging);//存储页码数据到pagin中
+
+        return "works";
+    }
+
+    public String works_title(){
+        istrue=getIstrue();//获得判断显示值
+        count=postService.getLikeCount(post_Entity.getPostTitle(),2);//获得总记录数
+        List<Post_Entity> list=postService.getLikeTitle(post_Entity.getPostTitle(),2);//获得作品的内容
+        setIsin("Administration");//设置管理导航栏的判断值
+        setIstrue(2);//设置导航栏选择判断值
+        ActionContext.getContext().put("isin",isin);
+        ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
+        ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
+        ActionContext.getContext().put("count",count);//存储查询的总记录数到count中
+        return "works_title";
     }
 
     public int getIstrue() {
