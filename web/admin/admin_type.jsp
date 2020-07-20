@@ -11,7 +11,7 @@
 <head>
     <title>Title</title>
     <style type="text/css">
-        th{
+        th {
             text-align: center;
         }
     </style>
@@ -24,20 +24,27 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            <table class="table"  style="text-align: center;">
-                <tr><td colspan="4" align="right"><button class="btn btn-default">新建</button></td></tr>
+            <table class="table" style="text-align: center;">
+                <tr>
+                    <td colspan="4" align="right">
+                        <button class="btn btn-default">新建</button>
+                    </td>
+                </tr>
                 <tr class="active">
                     <th>序号</th>
                     <th>类别名称</th>
                     <th>帖子总数</th>
                     <th>执行操作</th>
                 </tr>
-                <%int n=1;%>
+                <%int n = 1;%>
                 <s:iterator value="typelist">
                     <tr>
-                        <td style="vertical-align: middle;"><span style="font-family: 微软雅黑;font-size: 14px;"><%=n++%></span></td>
-                        <td style="vertical-align: middle;"><span style="font-family: 微软雅黑;font-size: 14px;">${cateName}</span></td>
-                        <td style="vertical-align: middle;"><span style="font-family: 微软雅黑;font-size: 14px;">${catePostCount}</span></td>
+                        <td style="vertical-align: middle;"><span
+                                style="font-family: 微软雅黑;font-size: 14px;"><%=n++%></span></td>
+                        <td style="vertical-align: middle;"><span
+                                style="font-family: 微软雅黑;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">${cateName}</span></td>
+                        <td style="vertical-align: middle;"><span
+                                style="font-family: 微软雅黑;font-size: 14px;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">${catePostCount}</span></td>
                         <td style="vertical-align: middle;" width="30%">
                             <button data-id="" class="btn btn-default">转移</button>
                             &nbsp;

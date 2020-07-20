@@ -30,7 +30,7 @@
 
     </form>
     <!-- navbar-form结束   -->
-    <table width="100%" class="text-center table">
+    <table class="table text-center">
         <tr class="active">
             <td>
                 <strong>内容标题</strong>
@@ -40,9 +40,9 @@
             </td>
         </tr>
         <s:iterator value="worklist">
-            <tr class="table-hover">
+            <tr>
                 <td>
-                    <div class="center-block" style="display:block;width:500px;font-family: 宋体;overflow: hidden;text-overflow: ellipsis;">${postTitle}</div>
+                    <div class="center-block" style="display:block;font-family: 宋体;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">${postTitle}</div>
                 </td>
                 <td width="30%">
                     <a href="#" class="btn btn-default">查看</a>
