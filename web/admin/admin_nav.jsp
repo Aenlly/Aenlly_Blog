@@ -115,23 +115,18 @@
                             作品管理
                         </div>
                     </a>
-                    <a href="admin_theme" target="_self">
-                        <div class="panel-body dl curter ${istrue==3?"active":""}">
-                            主题管理
-                        </div>
-                    </a>
                     <a href="admin_type" target="_self">
-                        <div class="panel-body dl curter ${istrue==4?"active":""}">
-                            类别管理
+                        <div class="panel-body dl curter ${istrue==3?"active":""}">
+                            类型管理
                         </div>
                     </a>
                     <a href="admin_matter" target="_self">
-                        <div class="panel-body dl curter ${istrue==5?"active":""}">
+                        <div class="panel-body dl curter ${istrue==4?"active":""}">
                             问题管理
                         </div>
                     </a>
                     <a href="admin_index" target="_self">
-                        <div class="panel-body dl curter ${istrue==6?"active":""}">
+                        <div class="panel-body dl curter ${istrue==5?"active":""}">
                         主页管理
                         </div>
                     </a>
@@ -177,6 +172,9 @@
                 </s:elseif>
                 <s:elseif test="%{#istrue==2}">
                     <s:include value="admin_works.jsp"></s:include>
+                </s:elseif>
+                <s:elseif test="%{#istrue==3}">
+                    <s:include value="admin_type.jsp"></s:include>
                 </s:elseif>
                 <s:else>
                     <s:include value="admin_release.jsp"></s:include>

@@ -13,9 +13,12 @@
 
 </head>
 <body>
+<div class="panel-heading">
+    <span style="font-family: 宋体;font-size: 14px;"><strong>作品管理</strong></span>
+</div>
 <div class="panel-body">
     <%-- 搜索内容搜索条 --%>
-    <form class="navbar-form" action="admin_works_title" role="search">
+    <form class="navbar-form" action="admin_works_title" role="search" style="padding-left: 0;">
         <div class="form-group">
             <input type="text" class="form-control" name="post_Entity.postTitle" placeholder="搜索内容">
             <s:if test="%{#count!=null}">
@@ -27,36 +30,28 @@
 
     </form>
     <!-- navbar-form结束   -->
-    <table width="100%" class="text-center table-hover">
-        <tr>
+    <table width="100%" class="text-center table">
+        <tr class="active">
             <td>
-                </br>
                 <strong>内容标题</strong>
-                </br></br>
             </td>
             <td>
-                </br>
                 <strong>执行操作</strong>
-                </br></br>
             </td>
         </tr>
         <s:iterator value="worklist">
-        <tr>
-            <td>
-                </br>
-                <div class="center-block" style="display:block;width:500px;font-family: 宋体;overflow: hidden;text-overflow: ellipsis;">${postTitle}</div>
-                </br>
-            </td>
-            <td width="30%">
-                </br>
-                <a href="#" class="btn btn-default">查看</a>
+            <tr class="table-hover">
+                <td>
+                    <div class="center-block" style="display:block;width:500px;font-family: 宋体;overflow: hidden;text-overflow: ellipsis;">${postTitle}</div>
+                </td>
+                <td width="30%">
+                    <a href="#" class="btn btn-default">查看</a>
                 &nbsp;
-                <a href="" class="btn btn-primary">编辑</a>
+                    <a href="" class="btn btn-primary">编辑</a>
                 &nbsp;
-                <a href="admin_delete?Post_Entity.postId=${postId}" class="btn btn-danger">删除</a>
-                </br></br>
-            </td>
-        </tr>
+                    <a href="admin_delete?Post_Entity.postId=${postId}" class="btn btn-danger">删除</a>
+                </td>
+            </tr>
         </s:iterator>
         <s:if test="%{#count!=null}">
         </s:if>
@@ -65,7 +60,7 @@
                 <td colspan="2">
                     <ul class="pagination">
                         <li><a href="admin_works?pageNow=${pageNow-1}">上一页</a></li>
-                        <li><span>共${pageNow}/${paging.pages}页</span></li>
+                        <li><span>共${pageNow}/${paging.pages==0?1:paging.pages}页</span></li>
                         <s:if test="%{isHasNext}">
                             <li><a href="admin_works?pageNow=${pageNow+1}">下一页</a></li>
                         </s:if>

@@ -2,9 +2,11 @@ package com.aenlly.action;
 
 import com.aenlly.bean.Paging;
 import com.aenlly.entity.Admin_Entity;
+import com.aenlly.entity.PostType_Entity;
 import com.aenlly.entity.Post_Entity;
 import com.aenlly.service.AdminService;
 import com.aenlly.service.PostService;
+import com.aenlly.service.PostTypeService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +23,35 @@ public class AdminAction extends ActionSupport {
     private AdminService adminService;
     @Autowired
     private PostService postService;
+    @Autowired
+    private PostTypeService postTypeService;
 
-    private Post_Entity post_Entity=new Post_Entity();
-    private Admin_Entity admin_Entity=new Admin_Entity();//必须得实例化，否则一直为空
+    private PostType_Entity postTypeEntity=new PostType_Entity();
+    private Post_Entity postEntity=new Post_Entity();
+    private Admin_Entity adminEntity=new Admin_Entity();//必须得实例化，否则一直为空
 
-    public Post_Entity getPost_Entity() {
-        return post_Entity;
+    public PostType_Entity getPostTypeEntity() {
+        return postTypeEntity;
     }
 
-    public void setPost_Entity(Post_Entity post_Entity) {
-        this.post_Entity = post_Entity;
+    public void setPostTypeEntity(PostType_Entity postTypeEntity) {
+        this.postTypeEntity = postTypeEntity;
     }
 
-    public Admin_Entity getAdmin_Entity() {
-        return admin_Entity;
+    public Post_Entity getPostEntity() {
+        return postEntity;
     }
 
-    public void setAdmin_Entity(Admin_Entity admin_Entity) {
-        this.admin_Entity = admin_Entity;
+    public void setPostEntity(Post_Entity postEntity) {
+        this.postEntity = postEntity;
+    }
+
+    public Admin_Entity getAdminEntity() {
+        return adminEntity;
+    }
+
+    public void setAdmin_Entity(Admin_Entity adminEntity) {
+        this.adminEntity = adminEntity;
     }
 
     private int pageNow=1;//初始化第一页
@@ -47,7 +60,7 @@ public class AdminAction extends ActionSupport {
     private String isin=null;
     private int count=-1;
 
-    //显示内容管理页
+    //显示内容管理页显示
     public String release(){
         setIstrue(0);
         return "release";
@@ -56,7 +69,7 @@ public class AdminAction extends ActionSupport {
     public String list() {
         // 查询显示
         try {
-            List<Admin_Entity> list = adminService.getAll(admin_Entity.getAdminNickname());
+            List<Admin_Entity> list = adminService.getAll(adminEntity.getAdminNickname());
             ActionContext.getContext().put("adminlists", list);
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -64,6 +77,7 @@ public class AdminAction extends ActionSupport {
         return "list";
     }
 
+    //文章管理显示
     public String article(){
         istrue=getIstrue();//获得判断显示值
         pageNow=getPageNow();//获得页码
@@ -84,10 +98,11 @@ public class AdminAction extends ActionSupport {
         return "article";
     }
 
+    //文章搜索管理
     public String article_title(){
         istrue=getIstrue();//获得判断显示值
-        count=postService.getLikeCount(post_Entity.getPostTitle(),1);//获得总记录数
-        List<Post_Entity> list=postService.getLikeTitle(post_Entity.getPostTitle(),1);//获得文章的内容
+        count=postService.getLikeCount(postEntity.getPostTitle(),1);//获得总记录数
+        List<Post_Entity> list=postService.getLikeTitle(postEntity.getPostTitle(),1);//获得文章的内容
         setIsin("Administration");//设置管理导航栏的判断值
         setIstrue(1);//设置导航栏选择判断值
         ActionContext.getContext().put("isin",isin);
@@ -97,6 +112,7 @@ public class AdminAction extends ActionSupport {
         return "article_title";
     }
 
+    //作品管理显示
     public String works(){
         istrue=getIstrue();//获得判断显示值
         pageNow=getPageNow();//获得页码
@@ -117,10 +133,11 @@ public class AdminAction extends ActionSupport {
         return "works";
     }
 
+    //作品搜索管理
     public String works_title(){
         istrue=getIstrue();//获得判断显示值
-        count=postService.getLikeCount(post_Entity.getPostTitle(),2);//获得总记录数
-        List<Post_Entity> list=postService.getLikeTitle(post_Entity.getPostTitle(),2);//获得作品的内容
+        count=postService.getLikeCount(postEntity.getPostTitle(),2);//获得总记录数
+        List<Post_Entity> list=postService.getLikeTitle(postEntity.getPostTitle(),2);//获得作品的内容
         setIsin("Administration");//设置管理导航栏的判断值
         setIstrue(2);//设置导航栏选择判断值
         ActionContext.getContext().put("isin",isin);
@@ -128,6 +145,20 @@ public class AdminAction extends ActionSupport {
         ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
         ActionContext.getContext().put("count",count);//存储查询的总记录数到count中
         return "works_title";
+    }
+
+    //主题管理显示
+    public String type(){
+
+        List<PostType_Entity> list=postTypeService.getAll();//获得全部类型
+
+        setIsin("Administration");//设置管理导航栏的判断值
+        setIstrue(3);//设置导航栏选择判断值
+
+        ActionContext.getContext().put("isin",isin);//存储判断展开值
+        ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
+        ActionContext.getContext().put("typelist",list);//存储查询的类型到typelist中
+        return "type";
     }
 
     public int getIstrue() {
