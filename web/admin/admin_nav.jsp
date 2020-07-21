@@ -104,7 +104,7 @@
                         <span class="panel-title"><strong>管理</strong></span>
                 </dt>
                 <!--   第二个panel-head结束   --->
-                <dd id="Administration" class="panel-collapse collapse ${isin=="Administration"?"in":""}">
+                <dd id="Administration" class="panel-collapse collapse in">
                     <a href="admin_article" target="_self">
                         <div class="panel-body dl curter ${istrue==1?"active":""}">
                             文章管理
@@ -136,7 +136,7 @@
                     <span class="panel-title"><strong>数据统计</strong></span>
                 </dt>
                 <!--   第三个panel-head结束   --->
-                <dd id="Datastatistics" class="panel-collapse collapse ">
+                <dd id="Datastatistics" class="panel-collapse collapse in">
                     <a href="admin_browse" target="_self" style="overflow: hidden;">
                         <div class="panel-body dl curter ${istrue==6?"active":""}">
                             浏览统计
@@ -146,7 +146,7 @@
                 <dt class="panel-heading curter" data-toggle="collapse" data-target="#Setup">
                     <span class="panel-title"><strong>管理信息</strong></span>
                 </dt>
-                <dd id="Setup" class="panel-collapse collapse">
+                <dd id="Setup" class="panel-collapse collapse in">
                     <a href="" target="_self">
                         <div class="panel-body dl curter ${istrue==7?"active":""}">
                             个人信息

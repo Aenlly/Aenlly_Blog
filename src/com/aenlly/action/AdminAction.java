@@ -70,7 +70,6 @@ public class AdminAction extends ActionSupport {
     private int pageNow=1;//初始化第一页
     private int pageSize=10;//内容的显示条度
     private int istrue=-1;//判断单击了某个管理
-    private String isin=null;
     private int count=-1;
 
     //显示内容管理页显示
@@ -101,9 +100,9 @@ public class AdminAction extends ActionSupport {
         Paging paging=new Paging(pageNow,pageSize,counts);//获得页的总页数等
         List<Post_Entity> list=postService.getTitle(pageNow,pageSize,1);//获得文章的内容
 
-        setIsin("Administration");//设置管理导航栏的判断值
+
         setIstrue(1);//设置导航栏选择判断值
-        ActionContext.getContext().put("isin",isin);
+
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
         ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
         ActionContext.getContext().put("paging",paging);//存储页码数据到pagin中
@@ -116,9 +115,8 @@ public class AdminAction extends ActionSupport {
         istrue=getIstrue();//获得判断显示值
         count=postService.getLikeCount(postEntity.getPostTitle(),1);//获得总记录数
         List<Post_Entity> list=postService.getLikeTitle(postEntity.getPostTitle(),1);//获得文章的内容
-        setIsin("Administration");//设置管理导航栏的判断值
+
         setIstrue(1);//设置导航栏选择判断值
-        ActionContext.getContext().put("isin",isin);
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
         ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
         ActionContext.getContext().put("count",count);//存储查询的总记录数到count中
@@ -136,9 +134,7 @@ public class AdminAction extends ActionSupport {
         Paging paging=new Paging(pageNow,pageSize,counts);//获得页的总页数等
         List<Post_Entity> list=postService.getTitle(pageNow,pageSize,2);//获得文章的内容
 
-        setIsin("Administration");//设置管理导航栏的判断值
         setIstrue(2);//设置导航栏选择判断值
-        ActionContext.getContext().put("isin",isin);
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
         ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
         ActionContext.getContext().put("paging",paging);//存储页码数据到pagin中
@@ -151,9 +147,8 @@ public class AdminAction extends ActionSupport {
         istrue=getIstrue();//获得判断显示值
         count=postService.getLikeCount(postEntity.getPostTitle(),2);//获得总记录数
         List<Post_Entity> list=postService.getLikeTitle(postEntity.getPostTitle(),2);//获得作品的内容
-        setIsin("Administration");//设置管理导航栏的判断值
+
         setIstrue(2);//设置导航栏选择判断值
-        ActionContext.getContext().put("isin",isin);
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
         ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
         ActionContext.getContext().put("count",count);//存储查询的总记录数到count中
@@ -165,10 +160,8 @@ public class AdminAction extends ActionSupport {
 
         List<PostType_Entity> list=postTypeService.getAll();//获得全部类型
 
-        setIsin("Administration");//设置管理导航栏的判断值
         setIstrue(3);//设置导航栏选择判断值
 
-        ActionContext.getContext().put("isin",isin);//存储判断展开值
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
         ActionContext.getContext().put("typelist",list);//存储查询的类型到typelist中
         return "type";
@@ -177,23 +170,17 @@ public class AdminAction extends ActionSupport {
     //主页管理
     public String index(){
         List<Index_Entity> list=indexService.getAll();//获得主页信息
-        setIsin("Administration");//设置管理导航栏的判断值
         setIstrue(5);//设置导航栏选择判断值
 
-        ActionContext.getContext().put("isin",isin);//存储判断展开值
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
         ActionContext.getContext().put("indexlist",list);//存储查询的主页信息到indexlist中
         return "index";
     }
 
-    public String indexupdate() {
-        boolean bool = indexService.update(indexEntity);
+    //主页管理更新
+    public void indexupdate() {
+        boolean bool = indexService.update(indexEntity);//更新获取返回值
         ActionContext.getContext().put("ontrue", bool);//用于判断是否弹出保存成功提示框
-        if (bool == true) {
-            return index();
-        } else {
-            return index();
-        }
     }
 
     public int getIstrue() {
@@ -218,14 +205,6 @@ public class AdminAction extends ActionSupport {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
-    }
-
-    public String getIsin() {
-        return isin;
-    }
-
-    public void setIsin(String isin) {
-        this.isin = isin;
     }
 
     public int getCount() {
