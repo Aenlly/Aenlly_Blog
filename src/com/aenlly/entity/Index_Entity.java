@@ -6,7 +6,7 @@ import java.util.Objects;
 @javax.persistence.Table(name = "index", schema = "aenlly_blog", catalog = "")
 public class Index_Entity {
     private int indexId;
-    private String indexTitle;
+    private String indexName;
     private String indexColor;
     private String indexColumn;
 
@@ -21,13 +21,13 @@ public class Index_Entity {
     }
 
     @javax.persistence.Basic
-    @javax.persistence.Column(name = "index_title", nullable = true, length = 255)
-    public String getIndexTitle() {
-        return indexTitle;
+    @javax.persistence.Column(name = "index_name", nullable = true, length = 255)
+    public String getIndexName() {
+        return indexName;
     }
 
-    public void setIndexTitle(String indexTitle) {
-        this.indexTitle = indexTitle;
+    public void setIndexName(String indexName) {
+        this.indexName = indexName;
     }
 
     @javax.persistence.Basic
@@ -56,13 +56,13 @@ public class Index_Entity {
         if (o == null || getClass() != o.getClass()) return false;
         Index_Entity that = (Index_Entity) o;
         return indexId == that.indexId &&
-                Objects.equals(indexTitle, that.indexTitle) &&
+                Objects.equals(indexName, that.indexName) &&
                 Objects.equals(indexColor, that.indexColor) &&
                 Objects.equals(indexColumn, that.indexColumn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(indexId, indexTitle, indexColor, indexColumn);
+        return Objects.hash(indexId, indexName, indexColor, indexColumn);
     }
 }

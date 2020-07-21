@@ -6,7 +6,7 @@ import com.aenlly.entity.PostType_Entity;
 import java.util.List;
 
 public interface PostTypeDao {
-    //保存
+    //插入新记录
     Integer save(PostType_Entity postTypeEntity);
     //按id查询
     PostType_Entity getId(int cateId);

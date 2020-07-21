@@ -2,9 +2,11 @@ package com.aenlly.action;
 
 import com.aenlly.bean.Paging;
 import com.aenlly.entity.Admin_Entity;
+import com.aenlly.entity.Index_Entity;
 import com.aenlly.entity.PostType_Entity;
 import com.aenlly.entity.Post_Entity;
 import com.aenlly.service.AdminService;
+import com.aenlly.service.IndexService;
 import com.aenlly.service.PostService;
 import com.aenlly.service.PostTypeService;
 import com.opensymphony.xwork2.ActionContext;
@@ -25,10 +27,21 @@ public class AdminAction extends ActionSupport {
     private PostService postService;
     @Autowired
     private PostTypeService postTypeService;
+    @Autowired
+    private IndexService indexService;
 
+    private Index_Entity indexEntity=new Index_Entity();
     private PostType_Entity postTypeEntity=new PostType_Entity();
     private Post_Entity postEntity=new Post_Entity();
     private Admin_Entity adminEntity=new Admin_Entity();//必须得实例化，否则一直为空
+
+    public Index_Entity getIndexEntity() {
+        return indexEntity;
+    }
+
+    public void setIndexEntity(Index_Entity indexEntity) {
+        this.indexEntity = indexEntity;
+    }
 
     public PostType_Entity getPostTypeEntity() {
         return postTypeEntity;
@@ -159,6 +172,28 @@ public class AdminAction extends ActionSupport {
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
         ActionContext.getContext().put("typelist",list);//存储查询的类型到typelist中
         return "type";
+    }
+
+    //主页管理
+    public String index(){
+        List<Index_Entity> list=indexService.getAll();//获得主页信息
+        setIsin("Administration");//设置管理导航栏的判断值
+        setIstrue(5);//设置导航栏选择判断值
+
+        ActionContext.getContext().put("isin",isin);//存储判断展开值
+        ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
+        ActionContext.getContext().put("indexlist",list);//存储查询的主页信息到indexlist中
+        return "index";
+    }
+
+    public String indexupdate() {
+        boolean bool = indexService.update(indexEntity);
+        ActionContext.getContext().put("ontrue", bool);//用于判断是否弹出保存成功提示框
+        if (bool == true) {
+            return index();
+        } else {
+            return index();
+        }
     }
 
     public int getIstrue() {

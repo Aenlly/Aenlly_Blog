@@ -176,6 +176,9 @@
                 <s:elseif test="%{#istrue==3}">
                     <s:include value="admin_type.jsp"></s:include>
                 </s:elseif>
+                <s:elseif test="%{#istrue==5}">
+                    <s:include value="admin_indexadmin.jsp"></s:include>
+                </s:elseif>
                 <s:else>
                     <s:include value="admin_release.jsp"></s:include>
                 </s:else>

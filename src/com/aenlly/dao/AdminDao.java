@@ -5,7 +5,7 @@ import com.aenlly.entity.Admin_Entity;
 import java.util.List;
 
 public interface AdminDao {
-    //保存
+    //插入新记录
     Integer save(Admin_Entity adminEntity);
     //按id查询
     Admin_Entity getId(int adminId);
