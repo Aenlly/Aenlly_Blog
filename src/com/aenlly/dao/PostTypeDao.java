@@ -12,7 +12,7 @@ public interface PostTypeDao {
     PostType_Entity getId(int cateId);
     //更新
     boolean update(PostType_Entity postTypeEntity);
-    //删除
+    //删除,根据id来进行
     boolean delete(PostType_Entity postTypeEntity);
     //查询
     List<PostType_Entity> getAll();

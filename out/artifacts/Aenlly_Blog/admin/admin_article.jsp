@@ -43,13 +43,13 @@
                         <strong>执行操作</strong>
                     </td>
                 </tr>
-                <%int n = 1;%>
+                <%int n = 0;%>
                 <s:iterator value="articlelist">
                     <tr>
-                        <td style="vertical-align: middle;"><%=n++%>
+                        <td style="vertical-align: middle;"><%=++n%>
                         </td>
                         <td style="vertical-align: middle;">
-                            <div class="center-block"
+                            <div
                                  style="display:block;font-family: 微软雅黑;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">${postTitle}</div>
                         </td>
                         <td style="vertical-align: middle;" width="30%">
@@ -65,7 +65,7 @@
                 </s:if>
                 <s:else>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <ul class="pagination">
                                 <li><a href="admin_page?pageNow=${pageNow-1}">上一页</a></li>
                                 <li><span>共${pageNow}/${paging.pages==0?1:paging.pages}页</span></li>

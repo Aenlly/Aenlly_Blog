@@ -157,14 +157,34 @@ public class AdminAction extends ActionSupport {
 
     //主题管理显示
     public String type(){
-
         List<PostType_Entity> list=postTypeService.getAll();//获得全部类型
-
         setIstrue(3);//设置导航栏选择判断值
 
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
         ActionContext.getContext().put("typelist",list);//存储查询的类型到typelist中
         return "type";
+    }
+
+    public String typeadd(){
+        int bool=postTypeService.save(postTypeEntity);
+        if(bool==0){
+            ActionContext.getContext().put("onaddtrue", -1);//用于判断是否成功
+        }else {
+            ActionContext.getContext().put("onaddtrue", bool);//用于判断是否成功
+        }
+        return type();
+    }
+
+    public String typeedit(){
+        boolean bool=postTypeService.update(postTypeEntity);
+        ActionContext.getContext().put("onedit",bool);
+        return type();
+    }
+
+    public String typedel(){
+        boolean bool=postTypeService.delete(postTypeService.getId(postTypeEntity.getCateId()));
+        ActionContext.getContext().put("ondel", bool);//用于判断是否成功
+        return type();
     }
 
     //主页管理
@@ -178,9 +198,10 @@ public class AdminAction extends ActionSupport {
     }
 
     //主页管理更新
-    public void indexupdate() {
+    public String indexupdate() {
         boolean bool = indexService.update(indexEntity);//更新获取返回值
         ActionContext.getContext().put("ontrue", bool);//用于判断是否弹出保存成功提示框
+        return index();
     }
 
     public int getIstrue() {

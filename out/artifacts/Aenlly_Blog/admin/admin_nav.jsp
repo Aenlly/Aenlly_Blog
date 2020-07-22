@@ -120,11 +120,13 @@
                             类型管理
                         </div>
                     </a>
+                    <!--未设计问题管理的数据库
                     <a href="admin_matter" target="_self">
                         <div class="panel-body dl curter ${istrue==4?"active":""}">
                             问题管理
                         </div>
                     </a>
+                    -->
                     <a href="admin_index" target="_self">
                         <div class="panel-body dl curter ${istrue==5?"active":""}">
                         主页管理
