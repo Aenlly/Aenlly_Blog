@@ -40,6 +40,9 @@
                         <strong>内容标题</strong>
                     </td>
                     <td>
+                        <strong>文章类别</strong>
+                    </td>
+                    <td>
                         <strong>执行操作</strong>
                     </td>
                 </tr>
@@ -50,14 +53,22 @@
                         </td>
                         <td style="vertical-align: middle;">
                             <div
-                                 style="display:block;font-family: 微软雅黑;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">${postTitle}</div>
+                                 style="display:block;font-family: 微软雅黑;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">
+                                    ${postTitle}
+                            </div>
+                        </td>
+                        <td style="vertical-align: middle;">
+                            <div
+                                    style="display:block;font-family: 微软雅黑;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">
+                                    ${cateName}
+                            </div>
                         </td>
                         <td style="vertical-align: middle;" width="30%">
                             <a href="#" class="btn btn-default">查看</a>
                             &nbsp;
                             <a href="" class="btn btn-primary">编辑</a>
                             &nbsp;
-                            <a href="admin_delete?Post_Entity.postId=${postId}" class="btn btn-danger">删除</a>
+                            <a href="admin_article_del?PostEntity.postId=${postId}" onclick="return confirm('确定删除该文章？删除后不可恢复！')" class="btn btn-danger">删除</a>
                         </td>
                     </tr>
                 </s:iterator>
@@ -65,15 +76,15 @@
                 </s:if>
                 <s:else>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="4">
                             <ul class="pagination">
-                                <li><a href="admin_page?pageNow=${pageNow-1}">上一页</a></li>
+                                <li><a href="admin_article?pageNow=${pageNow-1}">上一页</a></li>
                                 <li><span>共${pageNow}/${paging.pages==0?1:paging.pages}页</span></li>
                                 <s:if test="%{isHasNext}">
-                                    <li><a href="admin_page?pageNow=${pageNow+1}">下一页</a></li>
+                                    <li><a href="admin_article?pageNow=${pageNow+1}">下一页</a></li>
                                 </s:if>
                                 <s:else>
-                                    <li><a href="admin_page?pageNow=${pageNow}">下一页</a></li>
+                                    <li><a href="admin_article?pageNow=${pageNow}">下一页</a></li>
                                 </s:else>
                             </ul>
                         </td>
@@ -83,5 +94,16 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    if("${isbooldel}"=="true"){
+        alert("删除成功！");
+        location.replace(document.referrer);//获得上一个url
+        document.referrer //前一个页面的URL
+    }else if("${isbooldel}"=="false"){
+        alert("删除失败！");
+        location.replace(document.referrer);//获得上一个url
+        document.referrer //前一个页面的URL
+    }
+</script>
 </body>
 </html>

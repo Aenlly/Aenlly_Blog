@@ -1,5 +1,9 @@
 package com.aenlly.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -8,15 +12,29 @@ import java.util.Objects;
 public class Post_Entity {
     private int postId;
     private String postTitle;
-    private int themeId;
-    private int cateId;
+    private String themeName;
+    private String cateName;
     private String postAuthor;
     private Timestamp postTime;
     private String postContent;
     private int postClick;
 
+    /*
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "cate_Name",unique = false,updatable = true)
+    private PostType_Entity postTypeEntity;
+
+    public PostType_Entity getPostTypeEntity() {
+        return postTypeEntity;
+    }
+
+    public void setPostTypeEntity(PostType_Entity postTypeEntity) {
+        this.postTypeEntity = postTypeEntity;
+    }
+    */
+
     @javax.persistence.Id
-    @javax.persistence.Column(name = "post_id", nullable = false)
+    @javax.persistence.Column(name = "post_id", nullable = true)
     public int getPostId() {
         return postId;
     }
@@ -36,23 +54,23 @@ public class Post_Entity {
     }
 
     @javax.persistence.Basic
-    @javax.persistence.Column(name = "theme_id", nullable = false)
-    public int getThemeId() {
-        return themeId;
+    @javax.persistence.Column(name = "theme_name", nullable = false)
+    public String getThemeName() {
+        return themeName;
     }
 
-    public void setThemeId(int themeId) {
-        this.themeId = themeId;
+    public void setThemeName(String themeName) {
+        this.themeName = themeName;
     }
 
     @javax.persistence.Basic
-    @javax.persistence.Column(name = "cate_id", nullable = false)
-    public int getCateId() {
-        return cateId;
+    @javax.persistence.Column(name = "cate_name", nullable = false)
+    public String getCateName() {
+        return cateName;
     }
 
-    public void setCateId(int cateId) {
-        this.cateId = cateId;
+    public void setCateName(String cateName) {
+        this.cateName = cateName;
     }
 
     @javax.persistence.Basic
@@ -66,7 +84,7 @@ public class Post_Entity {
     }
 
     @javax.persistence.Basic
-    @javax.persistence.Column(name = "post_time", nullable = false)
+    @javax.persistence.Column(name = "post_time", nullable = true)
     public Timestamp getPostTime() {
         return postTime;
     }
@@ -86,7 +104,7 @@ public class Post_Entity {
     }
 
     @javax.persistence.Basic
-    @javax.persistence.Column(name = "post_click", nullable = false)
+    @javax.persistence.Column(name = "post_click", nullable = true)
     public int getPostClick() {
         return postClick;
     }
@@ -101,8 +119,8 @@ public class Post_Entity {
         if (o == null || getClass() != o.getClass()) return false;
         Post_Entity that = (Post_Entity) o;
         return postId == that.postId &&
-                themeId == that.themeId &&
-                cateId == that.cateId &&
+                themeName == that.themeName &&
+                cateName == that.cateName &&
                 postClick == that.postClick &&
                 Objects.equals(postTitle, that.postTitle) &&
                 Objects.equals(postAuthor, that.postAuthor) &&
@@ -112,6 +130,6 @@ public class Post_Entity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(postId, postTitle, themeId, cateId, postAuthor, postTime, postContent, postClick);
+        return Objects.hash(postId, postTitle, themeName, cateName, postAuthor, postTime, postContent, postClick);
     }
 }

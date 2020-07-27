@@ -1,14 +1,8 @@
 package com.aenlly.action;
 
 import com.aenlly.bean.Paging;
-import com.aenlly.entity.Admin_Entity;
-import com.aenlly.entity.Index_Entity;
-import com.aenlly.entity.PostType_Entity;
-import com.aenlly.entity.Post_Entity;
-import com.aenlly.service.AdminService;
-import com.aenlly.service.IndexService;
-import com.aenlly.service.PostService;
-import com.aenlly.service.PostTypeService;
+import com.aenlly.entity.*;
+import com.aenlly.service.*;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +23,12 @@ public class AdminAction extends ActionSupport {
     private PostTypeService postTypeService;
     @Autowired
     private IndexService indexService;
+    @Autowired
+    private PostThemeService postThemeService;
 
     private Index_Entity indexEntity=new Index_Entity();
     private PostType_Entity postTypeEntity=new PostType_Entity();
+    private PostTheme_Entity postThemeEntity=new PostTheme_Entity();
     private Post_Entity postEntity=new Post_Entity();
     private Admin_Entity adminEntity=new Admin_Entity();//必须得实例化，否则一直为空
 
@@ -49,6 +46,14 @@ public class AdminAction extends ActionSupport {
 
     public void setPostTypeEntity(PostType_Entity postTypeEntity) {
         this.postTypeEntity = postTypeEntity;
+    }
+
+    public PostTheme_Entity getPostThemeEntity() {
+        return postThemeEntity;
+    }
+
+    public void setPostThemeEntity(PostTheme_Entity postThemeEntity) {
+        this.postThemeEntity = postThemeEntity;
     }
 
     public Post_Entity getPostEntity() {
@@ -74,9 +79,28 @@ public class AdminAction extends ActionSupport {
 
     //显示内容管理页显示
     public String release(){
+
+        List<PostTheme_Entity> themelist=postThemeService.getAll();//查询主题
+        List<PostType_Entity> typelist=postTypeService.getAll();//查询类别
+
+        ActionContext.getContext().put("themelist",themelist);//存进主题
+        ActionContext.getContext().put("typelist",typelist);//存进类别
+
         setIstrue(0);
         return "release";
     }
+
+    public String releaseadd(){
+        System.out.println(postEntity.getPostAuthor());
+        System.out.println(postEntity.getPostTitle());
+        System.out.println(postEntity.getCateName());
+        System.out.println(postEntity.getPostContent());
+        boolean isbool=postService.save(postEntity);
+        System.out.println(isbool);
+        ActionContext.getContext().put("iscontadd", isbool);
+        return release();
+    }
+
 
     public String list() {
         // 查询显示
@@ -94,11 +118,11 @@ public class AdminAction extends ActionSupport {
         istrue=getIstrue();//获得判断显示值
         pageNow=getPageNow();//获得页码
         pageSize=getPageSize();//获得页显示数
-        int counts=postService.getCount(1);//获得总记录数
+        int counts=postService.getCount("文章");//获得总记录数
         if(pageNow<1||pageNow>(pageSize+count-1)/pageSize)//判断点击的页码是否小于1
             pageNow=1;
         Paging paging=new Paging(pageNow,pageSize,counts);//获得页的总页数等
-        List<Post_Entity> list=postService.getTitle(pageNow,pageSize,1);//获得文章的内容
+        List<Post_Entity> list=postService.getTitle(pageNow,pageSize,"文章");//获得文章的内容
 
 
         setIstrue(1);//设置导航栏选择判断值
@@ -113,8 +137,8 @@ public class AdminAction extends ActionSupport {
     //文章搜索管理
     public String article_title(){
         istrue=getIstrue();//获得判断显示值
-        count=postService.getLikeCount(postEntity.getPostTitle(),1);//获得总记录数
-        List<Post_Entity> list=postService.getLikeTitle(postEntity.getPostTitle(),1);//获得文章的内容
+        count=postService.getLikeCount(postEntity.getPostTitle(),"文章");//获得总记录数
+        List<Post_Entity> list=postService.getLikeTitle(postEntity.getPostTitle(),"文章");//获得文章的内容
 
         setIstrue(1);//设置导航栏选择判断值
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
@@ -123,16 +147,26 @@ public class AdminAction extends ActionSupport {
         return "article_title";
     }
 
+    //删除文章
+    public String article_del(){
+        boolean isbooldel=postService.delete(postService.getId(postEntity.getPostId()));
+
+        setIstrue(1);//设置导航栏选择判断值
+        ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
+        ActionContext.getContext().put("isbooldel",isbooldel);//存储用于判断显示界面的值到istrue中
+        return article();
+    }
+
     //作品管理显示
     public String works(){
         istrue=getIstrue();//获得判断显示值
         pageNow=getPageNow();//获得页码
         pageSize=getPageSize();//获得页显示数
-        int counts=postService.getCount(2);//获得总记录数
+        int counts=postService.getCount("作品");//获得总记录数
         if(pageNow<1||pageNow>(pageSize+count-1)/pageSize)//判断点击的页码是否小于1
             pageNow=1;
         Paging paging=new Paging(pageNow,pageSize,counts);//获得页的总页数等
-        List<Post_Entity> list=postService.getTitle(pageNow,pageSize,2);//获得文章的内容
+        List<Post_Entity> list=postService.getTitle(pageNow,pageSize,"作品");//获得文章的内容
 
         setIstrue(2);//设置导航栏选择判断值
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
@@ -145,8 +179,8 @@ public class AdminAction extends ActionSupport {
     //作品搜索管理
     public String works_title(){
         istrue=getIstrue();//获得判断显示值
-        count=postService.getLikeCount(postEntity.getPostTitle(),2);//获得总记录数
-        List<Post_Entity> list=postService.getLikeTitle(postEntity.getPostTitle(),2);//获得作品的内容
+        count=postService.getLikeCount(postEntity.getPostTitle(),"作品");//获得总记录数
+        List<Post_Entity> list=postService.getLikeTitle(postEntity.getPostTitle(),"作品");//获得作品的内容
 
         setIstrue(2);//设置导航栏选择判断值
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中

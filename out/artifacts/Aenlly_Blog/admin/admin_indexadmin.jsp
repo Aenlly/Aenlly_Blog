@@ -84,7 +84,7 @@
         alert("保存失败");
         location.replace(document.referrer);//获得上一个url
         document.referrer //前一个页面的URL
-    }
+    }else{}
 
     //输入十六进制数旁边显示相应的颜色
     function index_color() {//事件方法

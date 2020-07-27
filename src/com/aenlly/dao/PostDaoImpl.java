@@ -16,8 +16,14 @@ public class PostDaoImpl implements PostDao {
     private HibernateTemplate hibernateTemplate;
 
     @Override
-    public Integer save(Post_Entity postEntity) {
-        return (Integer)hibernateTemplate.save(postEntity);
+    public Boolean save(Post_Entity postEntity) {
+        try{
+            hibernateTemplate.save(postEntity);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
     }
 
     @Override
@@ -46,18 +52,18 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public List<Post_Entity> getTitle(int pageNow, int pageSize,int themeId) {
+    public List<Post_Entity> getTitle(int pageNow, int pageSize,String themeName) {
         DetachedCriteria detachedCriteria=DetachedCriteria.forClass(Post_Entity.class);
-        detachedCriteria.add(Restrictions.eq("themeId",themeId));
+        detachedCriteria.add(Restrictions.eq("themeName",themeName));
         //利用hibernateTemplate的findByCriteria分页查询方法其中三个参数分别为detachedCriteria，从多少记录条开始，查询多少记录，不加参数则不为分页查询
         List<Post_Entity> list = (List<Post_Entity>) hibernateTemplate.findByCriteria(detachedCriteria, (pageNow-1)*pageSize, pageSize);
         return list;
     }
 
     @Override
-    public Integer getCount(int themeId) {
-        String sql="from Post_Entity where themeId=?";
-        Object[] values=new Object[]{themeId};
+    public Integer getCount(String themeName) {
+        String sql="from Post_Entity where themeName=?";
+        Object[] values=new Object[]{themeName};
         int count=0;
         List<Post_Entity> lists = (List<Post_Entity>)hibernateTemplate.find(sql,values);
         for (Post_Entity list:lists) {
@@ -78,10 +84,10 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public Integer getLikeCount(String postTitle,int themeId) {
+    public Integer getLikeCount(String postTitle,String themeName) {
         DetachedCriteria detachedCriteria=DetachedCriteria.forClass(Post_Entity.class);
         detachedCriteria.add(Restrictions.like("postTitle",postTitle));
-        detachedCriteria.add(Restrictions.eq("themeId",themeId));
+        detachedCriteria.add(Restrictions.eq("themeName",themeName));
         //利用hibernateTemplate的findByCriteria分页查询方法其中参数分别为detachedCriteria
         List<Post_Entity> lists = (List<Post_Entity>) hibernateTemplate.findByCriteria(detachedCriteria);
         int count=0;
@@ -92,10 +98,10 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public List<Post_Entity> getLikeTitle(String postTitle,int themeId) {
+    public List<Post_Entity> getLikeTitle(String postTitle,String themeName) {
         DetachedCriteria detachedCriteria=DetachedCriteria.forClass(Post_Entity.class);
         detachedCriteria.add(Restrictions.like("postTitle",postTitle));
-        detachedCriteria.add(Restrictions.eq("themeId",themeId));
+        detachedCriteria.add(Restrictions.eq("themeName",themeName));
         //利用hibernateTemplate的findByCriteria分页查询方法其中参数分别为detachedCriteria
         List<Post_Entity> list = (List<Post_Entity>) hibernateTemplate.findByCriteria(detachedCriteria);
         return list;

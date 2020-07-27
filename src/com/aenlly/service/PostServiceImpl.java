@@ -14,7 +14,7 @@ public class PostServiceImpl implements PostService{
     private PostDao postDao;
 
     @Override
-    public Integer save(Post_Entity postEntity) {
+    public Boolean save(Post_Entity postEntity) {
         return postDao.save(postEntity);
     }
 
@@ -34,13 +34,13 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<Post_Entity> getTitle(int pageNow, int pageSize,int themeId) {
-        return postDao.getTitle(pageNow,pageSize,themeId);
+    public List<Post_Entity> getTitle(int pageNow, int pageSize,String themeName) {
+        return postDao.getTitle(pageNow,pageSize,themeName);
     }
 
     @Override
-    public int getCount(int themeId) {
-        return postDao.getCount(themeId);
+    public Integer getCount(String themeName) {
+        return postDao.getCount(themeName);
     }
 
     @Override
@@ -49,12 +49,12 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Integer getLikeCount(String postTitle, int themeId) {
-        return postDao.getLikeCount(postTitle,themeId);
+    public Integer getLikeCount(String postTitle, String themeName) {
+        return postDao.getLikeCount(postTitle,themeName);
     }
 
     @Override
-    public List<Post_Entity> getLikeTitle( String postTitle, int themeId) {
-        return postDao.getLikeTitle(postTitle,themeId);
+    public List<Post_Entity> getLikeTitle( String postTitle, String themeName) {
+        return postDao.getLikeTitle(postTitle,themeName);
     }
 }
