@@ -90,6 +90,7 @@ public class AdminAction extends ActionSupport {
         return "release";
     }
 
+    //主题添加
     public String releaseadd(){
         System.out.println(postEntity.getPostAuthor());
         System.out.println(postEntity.getPostTitle());
@@ -170,7 +171,7 @@ public class AdminAction extends ActionSupport {
 
         setIstrue(2);//设置导航栏选择判断值
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
-        ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
+        ActionContext.getContext().put("workslist",list);//存储显示的内容到pagelist中
         ActionContext.getContext().put("paging",paging);//存储页码数据到pagin中
 
         return "works";
@@ -184,7 +185,7 @@ public class AdminAction extends ActionSupport {
 
         setIstrue(2);//设置导航栏选择判断值
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
-        ActionContext.getContext().put("articlelist",list);//存储显示的内容到pagelist中
+        ActionContext.getContext().put("workslist",list);//存储显示的内容到pagelist中
         ActionContext.getContext().put("count",count);//存储查询的总记录数到count中
         return "works_title";
     }
@@ -209,12 +210,15 @@ public class AdminAction extends ActionSupport {
         return type();
     }
 
+
+    //类型编辑
     public String typeedit(){
         boolean bool=postTypeService.update(postTypeEntity);
         ActionContext.getContext().put("onedit",bool);
         return type();
     }
 
+    //类型删除
     public String typedel(){
         boolean bool=postTypeService.delete(postTypeService.getId(postTypeEntity.getCateId()));
         ActionContext.getContext().put("ondel", bool);//用于判断是否成功

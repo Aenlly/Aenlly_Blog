@@ -22,7 +22,7 @@
             <%-- 搜索内容搜索条 --%>
             <form class="navbar-form" action="admin_article_title" role="search" style="padding-left: 0;">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="post_Entity.postTitle" placeholder="搜索内容">
+                    <input type="text" class="form-control" name="postEntity.postTitle" placeholder="搜索内容标题">
                     <s:if test="%{#count!=null}">
                         查询结果:共${count}条记录
                     </s:if>

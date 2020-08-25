@@ -20,7 +20,7 @@
     <%-- 搜索内容搜索条 --%>
     <form class="navbar-form" action="admin_works_title" role="search" style="padding-left: 0;">
         <div class="form-group">
-            <input type="text" class="form-control" name="post_Entity.postTitle" placeholder="搜索内容">
+            <input type="text" class="form-control" name="postEntity.postTitle" placeholder="搜索内容标题">
             <s:if test="%{#count!=null}">
                 查询结果:共${count}条记录
             </s:if>
@@ -33,23 +33,41 @@
     <table class="table text-center">
         <tr class="active">
             <td>
+                <strong>序号</strong>
+            </td>
+            <td>
                 <strong>内容标题</strong>
+            </td>
+            <td>
+                <strong>文章类别</strong>
             </td>
             <td>
                 <strong>执行操作</strong>
             </td>
         </tr>
-        <s:iterator value="worklist">
+        <%int n = 0;%>
+        <s:iterator value="workslist">
             <tr>
-                <td>
-                    <div class="center-block" style="display:block;font-family: 宋体;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">${postTitle}</div>
+                <td style="vertical-align: middle;"><%=++n%>
+                </td>
+                <td style="vertical-align: middle;">
+                    <div
+                            style="display:block;font-family: 微软雅黑;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">
+                            ${postTitle}
+                    </div>
+                </td>
+                <td style="vertical-align: middle;">
+                    <div
+                            style="display:block;font-family: 微软雅黑;font-size: 14px;word-wrap:break-word;word-break:break-all;overflow: hidden;">
+                            ${cateName}
+                    </div>
                 </td>
                 <td width="30%">
                     <a href="#" class="btn btn-default">查看</a>
                 &nbsp;
                     <a href="" class="btn btn-primary">编辑</a>
                 &nbsp;
-                    <a href="admin_delete?Post_Entity.postId=${postId}" class="btn btn-danger">删除</a>
+                    <a href="admin_delete?Post_Entity.postId=${postId}"  onclick="return confirm('确定删除该作品？删除后不可恢复！')" class="btn btn-danger">删除</a>
                 </td>
             </tr>
         </s:iterator>
@@ -57,7 +75,7 @@
         </s:if>
         <s:else>
             <tr>
-                <td colspan="2">
+                <td colspan="4">
                     <ul class="pagination">
                         <li><a href="admin_works?pageNow=${pageNow-1}">上一页</a></li>
                         <li><span>共${pageNow}/${paging.pages==0?1:paging.pages}页</span></li>
