@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Aenlly
@@ -9,7 +10,7 @@
 <html>
 <head>
     <style type="text/css">
-        .col{
+        .col {
             padding: 0;
             margin: 0;
         }
@@ -19,7 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col col-md-12">
-            <div class="navbar-default" role="navigation"  style="background-color: #2aabd2">
+            <div class="navbar-default" role="navigation" style="background-color: #2aabd2">
                 <div class="navbar-header">
                     <div class="navbar-brand">
                         <a href="index.jsp" style="text-decoration: none;">
@@ -46,7 +47,7 @@
                         </li>
                         <li>
                             <a href="">
-                                <span style="color: #e0e0e0;">向作者提问</span>
+                                <span style="color: #e0e0e0;">提问</span>
                             </a>
                         </li>
                         <li>
@@ -85,29 +86,106 @@
                         </font>
                     </span>
                 </div>
+                <div class="panel-body"></div>
                 <!--   panel-head标题结束    -->
-                <div class="panel-body">
-
-                </div>
-                <!--    panel-body内容结束    -->
             </div>
             <!--    第一个panel结束-->
+            <table class="table" style="margin-bottom: 0px;">
+                <% int n = 1;
+                    for (; n < 10; n++) {%>
+                <tr>
+                    <td style="vertical-align: middle;">
+                        <div style="width: 100%;">
+                            <a href="#">
+                                <div style="width: 87%;text-align: left;float: left;">
+                                    <%=n%>. ssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+                                </div>
+                                <div style="width: 13%;float: left;" align="right">
+                                    2019 - 5 - 6
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <%}%>
+                <tr>
+                    <td align="right" style="vertical-align: middle;">
+                        <a href="#">更多...</a>
+                    </td>
+                </tr>
+            </table>
+
+
+            </br>
+
+            <div class="col panel">
+                <div class="panel-heading col-md-2 text-center" style="border-top: black 5px solid;">
+                    <span style="font-family: sans-serif;font-size: 20px;letter-spacing: 2px;text-align: center;">
+                        <font color="black">
+                            <strong><%out.print(request.getParameter("works"));%></strong>
+                        </font>
+                    </span>
+                </div>
+                <div class="panel-body"></div>
+                <!--   panel-head标题结束    -->
+            </div>
+            <!--    第一个panel结束-->
+            <table class="table" style="margin-bottom: 0px;">
+                <% n = 1;
+                    for (; n < 10; n++) {%>
+                <tr>
+                    <td style="vertical-align: middle;">
+                        <div style="width: 100%;">
+                            <a href="#">
+                                <div style="width: 87%;text-align: left;float: left;">
+                                    <%=n%>. 人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人
+                                </div>
+                                <div style="width: 13%;float: left;" align="right">
+                                    2019 - 5 - 6
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <%}%>
+                <tr>
+                    <td align="right" style="vertical-align: middle;">
+                        <a href="#">更多...</a>
+                    </td>
+                </tr>
+            </table>
+
+
         </div>
         <!--  col-md-8结束   -->
         <div class="col col-md-1"></div>
         <div class="col col-md-3" style="border-left: #e2e2e2 1px solid;">
-            <div class="panel">
+            <div class="col panel">
                 <div class="panel-heading">
-                    <div class="panel-group">
+                    <div class="panel-group" align="center" style="margin-bottom: 12px;margin-top: 8px;">
+                        <span style="color:black;font-family: sans-serif;font-size: 20px;letter-spacing: 2px;text-align: center;">
+                            <strong>文章/作品类型查找</strong>
+                        </span>
                     </div>
                 </div>
                 <!--  pan-head头部结束   -->
-                <div class="panel-body">
-
-                </div>
-                <!--   panel-body内容结束   -->
             </div>
             <!--  第二个panel面板结束    -->
+            <table class="table" style="margin-bottom: 0px;">
+                <%for(n=0;n<10;n++){%>
+                <tr>
+                    <td style="vertical-align: center;border-top: #FFFFFF">
+                        <div style="width: 100%;">
+                            <div style="text-align:center;">
+                                <a href="#">
+                                    <span style="font-size: 15pt;font-family: 微软雅黑;">C#</span>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <%}%>
+            </table>
         </div>
         <!--  右侧panel面板定义划分为col-md-3大小   -->
     </div>

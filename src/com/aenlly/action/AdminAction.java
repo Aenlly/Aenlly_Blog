@@ -77,6 +77,10 @@ public class AdminAction extends ActionSupport {
     private int istrue=-1;//判断单击了某个管理
     private int count=-1;
 
+    public String index(){
+        return release();
+    }
+
     //显示内容管理页显示
     public String release(){
 
@@ -100,18 +104,6 @@ public class AdminAction extends ActionSupport {
         System.out.println(isbool);
         ActionContext.getContext().put("iscontadd", isbool);
         return release();
-    }
-
-
-    public String list() {
-        // 查询显示
-        try {
-            List<Admin_Entity> list = adminService.getAll(adminEntity.getAdminNickname());
-            ActionContext.getContext().put("adminlists", list);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return "list";
     }
 
     //文章管理显示
@@ -226,20 +218,20 @@ public class AdminAction extends ActionSupport {
     }
 
     //主页管理
-    public String index(){
+    public String indexs(){
         List<Index_Entity> list=indexService.getAll();//获得主页信息
         setIstrue(5);//设置导航栏选择判断值
 
         ActionContext.getContext().put("istrue",istrue);//存储用于判断显示界面的值到istrue中
         ActionContext.getContext().put("indexlist",list);//存储查询的主页信息到indexlist中
-        return "index";
+        return "indexs";
     }
 
     //主页管理更新
     public String indexupdate() {
         boolean bool = indexService.update(indexEntity);//更新获取返回值
         ActionContext.getContext().put("ontrue", bool);//用于判断是否弹出保存成功提示框
-        return index();
+        return indexs();
     }
 
     public int getIstrue() {

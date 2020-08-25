@@ -28,14 +28,13 @@
 
         </action>
         <action name="admin_*" class="adminAction" method="{1}">
-            <result name="release">/admin/admin_index.jsp</result>
-            <result name="list">/admin_index.jsp</result>
-            <result name="article">/admin/admin_index.jsp</result>
-            <result name="article_title">/admin/admin_index.jsp</result>
-            <result name="works">/admin/admin_index.jsp</result>
-            <result name="works_title">/admin/admin_index.jsp</result>
-            <result name="type">/admin/admin_index.jsp</result>
-            <result name="index">/admin/admin_index.jsp</result>
+            <result name="release">/admin/admin_index.jsp</result><!-- 发布内容  -->
+            <result name="article">/admin/admin_index.jsp</result><!-- 文章管理  -->
+            <result name="article_title">/admin/admin_index.jsp</result><!-- 文章管理标题搜索  -->
+            <result name="works">/admin/admin_index.jsp</result><!-- 作品管理  -->
+            <result name="works_title">/admin/admin_index.jsp</result><!-- 作品管理标题搜索  -->
+            <result name="type">/admin/admin_index.jsp</result><!-- 类型管理  -->
+            <result name="indexs">/admin/admin_index.jsp</result><!-- 主页管理  -->
             <!--如果struts为2.5版本以上，需要添加执行的方法,如
             <allowed-methods>list</allowed-methods>
             -->

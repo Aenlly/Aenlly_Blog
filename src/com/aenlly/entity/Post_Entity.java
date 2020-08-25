@@ -44,7 +44,7 @@ public class Post_Entity {
     }
 
     @javax.persistence.Basic
-    @javax.persistence.Column(name = "post_title", nullable = false, length = 255)
+    @javax.persistence.Column(name = "post_title", nullable = false, length = 30)
     public String getPostTitle() {
         return postTitle;
     }

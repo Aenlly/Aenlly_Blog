@@ -18,6 +18,7 @@
     <div class="row">
       <s:include value="index/index_nav.jsp">
         <s:param name="article" value="'最新文章'"/>
+        <s:param name="works" value="'最新作品'"/>
       </s:include>
     </div>
   </div>

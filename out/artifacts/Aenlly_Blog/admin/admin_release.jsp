@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" class="form-control" required="required" name="PostEntity.postTitle" width="100%" maxlength="50" >
+                    <input type="text" class="form-control" required="required" name="PostEntity.postTitle" width="100%" maxlength="30" >
                 </td>
             </tr>
             <tr>
