@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller("adminAction")
 @Scope("prototype")

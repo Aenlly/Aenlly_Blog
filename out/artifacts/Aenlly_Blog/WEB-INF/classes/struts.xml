@@ -40,6 +40,9 @@
             -->
         </action>
 
+        <action name="content_*" class="contentAction" method="{1}">
+            <result name="view">/index/content_view.jsp</result><!-- 显示文章或者作品  -->
+        </action>
     </package>
 
 </struts>
